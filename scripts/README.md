@@ -24,6 +24,18 @@ O comando `validate` e a unica fonte de validacao usada localmente e no CI. Hoje
 
 A protecao local de arquivos sensiveis e baseada em nomes/extensoes e nao detecta chaves ou tokens dentro de arquivos comuns. O workflow do GitHub executa Gitleaks como verificacao de conteudo em Pull Requests.
 
+## Limpeza de branches merged
+
+`.github/workflows/cleanup-merged-branches.yml` executa diariamente e apaga branches remotas do mesmo repositorio associadas a PRs para `main` que foram merged ha pelo menos 48 horas. Branches protegidas, `main`, `master`, branches de forks, branches com outro PR aberto e branches cujo SHA mudou desde o merge sao ignorados. Branches locais nunca sao removidas.
+
+O script `scripts/cleanup_merged_branches.py` usa dry-run por padrao. A exclusao exige `--execute`; o workflow agendado passa essa opcao com `contents: write` e `pull-requests: read`. O disparo manual do workflow tambem e dry-run por padrao e so apaga com a entrada explicita `delete_eligible=true`. Para uma simulacao manual local, defina `GITHUB_TOKEN` e `GITHUB_REPOSITORY=owner/repo`, depois execute:
+
+```powershell
+python scripts/cleanup_merged_branches.py
+```
+
+Uma execucao agendada pode atrasar; 48 horas e o limite minimo, nao um instante garantido.
+
 ## Recuperacao
 
 Se o push foi concluido mas a criacao do PR falhou, execute novamente o mesmo comando na branch de tarefa; o script nao cria commit vazio e tenta criar ou localizar o PR existente.
