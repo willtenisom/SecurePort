@@ -20,6 +20,9 @@
 4. Adicione ou atualize testes que demonstrem os criterios e as protecoes relevantes; execute os comandos disponiveis no projeto.
 5. Revise a rastreabilidade requisito -> implementacao -> teste e atualize o estado da fase/documentacao quando aplicavel.
 6. Informe o que mudou, validacoes executadas, decisoes pendentes e limitacoes.
+7. Ao concluir uma tarefa de implementacao com spec aprovada, criterios atendidos e validacoes passando, execute `python scripts/ship.py ship <tipo> <ID-da-spec> "<resumo>"` para criar commit, publicar a branch e abrir um Pull Request para revisao humana. Use `--draft` quando a tarefa ainda precisar de revisao preliminar.
+8. Nao execute a entrega automatica para rascunhos, tarefas incompletas, explicacoes/planos, validacoes com falha ou quando o usuario pedir explicitamente para nao commitar/publicar. Nunca faca merge; se GitHub CLI, autenticacao ou remote estiver indisponivel, reporte o bloqueio sem contornar o fluxo.
+9. Antes de executar `ship`, confirme que todas as alteracoes no worktree pertencem a tarefa e consulte `scripts/README.md`; o script prepara todos os arquivos nao staged.
 
 ## Invariantes do produto
 

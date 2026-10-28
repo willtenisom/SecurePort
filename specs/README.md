@@ -8,11 +8,13 @@ Este diretorio e a fonte versionada dos requisitos e das decisoes do produto. A 
 - `architecture/overview.md`: limites entre componentes e infraestrutura pretendida.
 - `architecture/decisions/`: decisoes arquiteturais (ADRs), incluindo opcoes ainda pendentes.
 - `features/local-specs-mcp.md`: servidor MCP local somente-leitura para consulta compacta das especificacoes.
+- `features/dev-workflow-automation.md`: validacao, commit, push e abertura de PR para tarefas concluidas.
 - `features/`: requisitos e criterios de aceite por fase.
 - `roadmap.md`: sequencia, dependencias e estado das fases.
 - `templates/feature-spec.md`: modelo para novas funcionalidades ou mudancas relevantes.
 
 O servidor MCP das especificacoes e uma ferramenta local de desenvolvimento, fora das seis fases do produto; veja `features/local-specs-mcp.md`.
+O fluxo local de entrega tambem e ferramenta de desenvolvimento, fora das seis fases do produto; veja `features/dev-workflow-automation.md` e `scripts/README.md`.
 
 ## Fluxo para cada mudanca
 
