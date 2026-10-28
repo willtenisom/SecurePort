@@ -1,6 +1,6 @@
 # Automacao local de validacao e Pull Request
 
-- **Estado:** Em andamento
+- **Estado:** Concluida
 - **Tipo:** Ferramenta de desenvolvimento; fora do roadmap de runtime do produto
 - **Atores:** Assistente Copilot no VS Code e desenvolvedor local
 - **Dependencias:** Python 3.10+, Git, GitHub CLI (`gh`) autenticado e remote `origin`
@@ -60,4 +60,4 @@ Validacao de aceite anterior: 15 testes locais passaram; o fluxo criou e atualiz
 
 Uma execucao diaria verifica PRs com `merged_at` pelo menos 48 horas no passado. A limpeza cobre apenas branches head do proprio repositorio para PRs com base `main`; forks, PRs sem merge, branches protegidas, branches usadas por outro PR aberto, branches cujo SHA divergiu desde o merge e `main`/`master` sao ignorados. Dry-run e o comportamento padrao local e no disparo manual do workflow; somente a agenda ou uma confirmacao manual explicita envia o opt-in de exclusao. O GitHub pode atrasar execucoes agendadas, portanto 48 horas e o tempo minimo, nao um horario exato de exclusao. Branches locais nao sao removidas.
 
-Validacao desta alteracao: 19 testes locais passaram, ambos os workflows foram parseados como YAML e o dry-run autenticado contra a API do repositorio nao encontrou branches elegiveis. O modo de exclusao foi exercitado com API simulada; nenhuma branch real foi apagada.
+Validacao desta alteracao: 19 testes locais passaram, ambos os workflows foram parseados como YAML e o dry-run autenticado contra a API do repositorio nao encontrou branches elegiveis. O modo de exclusao foi exercitado com API simulada; nenhuma branch real foi apagada. No PR #2, os checks hospedados `Tests` e `Secret scan` passaram.
