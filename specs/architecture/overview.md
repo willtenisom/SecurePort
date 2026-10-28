@@ -13,6 +13,7 @@
 | PostgreSQL | Persistencia relacional pretendida; estrategia de compartilhamento e propriedade dos dados entre Django e FastAPI pendente de ADR. |
 | Redis + Celery | Infraestrutura pretendida para tarefas assincronas e processamento de relatorios/alertas; topologia e filas ainda por definir. |
 | Nginx | Proxy de entrada pretendido para a implantacao; roteamento e terminacao TLS dependem do ambiente escolhido. |
+| MCP local de specs | Ferramenta de desenvolvimento somente-leitura que busca trechos nas especificacoes Markdown locais; nao participa do runtime nem acessa dados do produto. |
 
 ## Limites e regras
 
@@ -22,6 +23,8 @@
 - Contratos HTTP, WebSocket e webhook precisam de autenticacao/autorizacao, validacao e documentacao OpenAPI apropriadas.
 - O painel ao vivo e uma projecao de eventos aceitos, nao uma fonte de verdade para autorizar acessos.
 - Compartilhar o mesmo Postgres nao significa compartilhar tabelas sem propriedade, contratos e estrategia de migrations definidos.
+- O servidor MCP local tem acesso somente aos arquivos Markdown de `specs/`; nao inicia servicos do produto, nao acessa rede e nao altera arquivos.
+- A recuperacao usa correspondencia lexical local, sem embeddings ou chamadas externas, e limita o volume devolvido ao agente (ver ADR-0002).
 
 ## Decisoes pendentes
 

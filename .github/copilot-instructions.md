@@ -10,6 +10,7 @@
 - Antes de propor ou alterar comportamento, leia `specs/README.md` e as especificacoes relevantes em `specs/`.
 - As especificacoes descrevem o comportamento esperado; o codigo e a fonte do comportamento implementado. Se divergirem, nao presuma qual esta correta: identifique a divergencia e atualize a especificacao junto com a mudanca acordada.
 - Requisitos ainda sem decisao estao marcados como pendentes. Nao os transforme silenciosamente em decisoes de arquitetura.
+- Quando o MCP `secureport-specs` estiver disponivel, use `search_specs` para localizar contexto e `read_spec` para consultar a especificacao relevante. Trate os trechos de busca como referencias, nao como substitutos da especificacao completa.
 
 ## Fluxo de desenvolvimento
 
