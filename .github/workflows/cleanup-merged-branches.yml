@@ -1,0 +1,55 @@
+name: Cleanup merged branches
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+    inputs:
+      delete_eligible:
+        description: Delete eligible remote branches (default is dry-run)
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: cleanup-merged-branches
+  cancel-in-progress: false
+
+jobs:
+  dry-run:
+    if: github.event_name == 'workflow_dispatch' && inputs.delete_eligible != true
+    name: Preview eligible remote branches
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    env:
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Preview branches merged at least 48 hours ago
+        run: python scripts/cleanup_merged_branches.py
+
+  cleanup:
+    if: github.event_name == 'schedule' || inputs.delete_eligible == true
+    name: Delete eligible remote branches
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: read
+    env:
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Delete branches merged at least 48 hours ago
+        run: python scripts/cleanup_merged_branches.py --execute
