@@ -1,6 +1,6 @@
 # Automacao local de validacao e Pull Request
 
-- **Estado:** Em andamento
+- **Estado:** Concluida
 - **Tipo:** Ferramenta de desenvolvimento; fora do roadmap de runtime do produto
 - **Atores:** Assistente Copilot no VS Code e desenvolvedor local
 - **Dependencias:** Python 3.10+, Git, GitHub CLI (`gh`) autenticado e remote `origin`
@@ -48,4 +48,4 @@ Reduzir operacoes repetitivas do agente e manter mudancas importantes revisaveis
 
 O repositorio atualmente tem testes Python `unittest`; o script e o CI executam `python scripts/ship.py validate`. Quando novas stacks ou suites forem adicionadas, atualizar o comando e este contrato antes de depender da automacao para elas.
 
-A validacao local do script e dos testes nao cria commits nem publica branches. A integracao real de `gh` e a execucao do workflow hospedado precisam ser verificadas depois de instalar/autenticar o GitHub CLI e abrir o primeiro PR.
+Validacao de aceite: 15 testes locais passaram; o fluxo criou e atualizou o PR #1 sem duplicar commit; os checks hospedados `Tests` e `Secret scan` passaram. O primeiro check do Gitleaks identificou falta de permissao `pull-requests: read`; a permissao minima foi adicionada e o re-run passou.
